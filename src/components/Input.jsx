@@ -7,9 +7,14 @@ function Input() {
 
   const inputNum = (e) => {
     let input = e.target.value;
-
+    if (input === "0") return;
     if (input === "." && num.toString().indexOf(".") !== -1) {
       return;
+    }
+    if (input === "." && num.toString().indexOf(".") === -1 && num) {
+      input = ".";
+    } else if (!num && input === "." && num.toString().indexOf(".") === -1) {
+      input = "0.";
     }
     num === 0 ? setNum(input) : setNum(num + input);
   };
@@ -33,9 +38,9 @@ function Input() {
   return (
     <div className="flex items-center justify-center h-full">
       <div className="grid grid-cols-4 md:w-2/12 md:h-2/4 bg-[#DCDBDC]">
-        <h2 className="col-span-4 text-end px-4 bg-[#7B7A89] text-white md:text-4xl font-medium text-xl flex items-center justify-end">
-          {num}
-        </h2>
+        <div className="col-span-4 text-end px-4 bg-[#7B7A89] text-white md:text-4xl font-medium text-xl flex items-center justify-end">
+          <h2 className="">{num}</h2>
+        </div>
         <button className="border-[#7B7A89] border" onClick={() => setNum(0)}>
           AC
         </button>
