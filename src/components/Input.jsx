@@ -7,7 +7,7 @@ function Input() {
 
   const inputNum = (e) => {
     let input = e.target.value;
-    if (input === "0") return;
+    if (num.length > 16) return;
     if (input === "." && num.toString().indexOf(".") !== -1) {
       return;
     }
@@ -16,12 +16,25 @@ function Input() {
     } else if (!num && input === "." && num.toString().indexOf(".") === -1) {
       input = "0.";
     }
-    num === 0 ? setNum(input) : setNum(num + input);
+    if (input === "0" && num === "0") {
+      return;
+    } else if (num === 0) {
+      setNum(input);
+      return;
+    } else {
+      setNum(num + input);
+    }
   };
   const handleOperator = (e) => {
     let operatorInput = e.target.value;
     setOperator(operatorInput);
-    setOldNumber(num);
+    if (operatorInput === "X") operatorInput = "*";
+    setOldNumber((prev) => {
+      if ((prev === 0 && operatorInput === "*") || operatorInput === "/") {
+        prev = 1;
+      }
+      return eval(num + operatorInput + prev);
+    });
     setNum(0);
   };
   const calulate = () => {
@@ -35,13 +48,21 @@ function Input() {
       setNum(parseFloat(oldNumber) + parseFloat(num));
     }
   };
+
   return (
     <div className="flex items-center justify-center h-full">
-      <div className="grid grid-cols-4 md:w-2/12 md:h-2/4 bg-[#DCDBDC]">
+      <div className="grid grid-cols-4 md:w-3/12 md:h-3/4 bg-[#DCDBDC]">
         <div className="col-span-4 text-end px-4 bg-[#7B7A89] text-white md:text-4xl font-medium text-xl flex items-center justify-end">
-          <h2 className="">{num}</h2>
+          <p>{num}</p>
         </div>
-        <button className="border-[#7B7A89] border" onClick={() => setNum(0)}>
+        <button
+          className="border-[#7B7A89] border"
+          onClick={() => {
+            setNum(0);
+            setOperator("");
+            setOldNumber(0);
+          }}
+        >
           AC
         </button>
         <button
