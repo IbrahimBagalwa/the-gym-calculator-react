@@ -33,6 +33,7 @@ function Input() {
       if ((prev === 0 && operatorInput === "*") || operatorInput === "/") {
         prev = 1;
       }
+      // eslint-disable-next-line no-eval
       return eval(num + operatorInput + prev);
     });
     setNum(0);
