@@ -16,8 +16,8 @@ function Input() {
     } else if (!num && input === "." && num.toString().indexOf(".") === -1) {
       input = "0.";
     }
-    if (input === "0" && num === "0") {
-      return;
+    if (input === "0" && num === 0) {
+      setNum(num);
     } else if (num === 0) {
       setNum(input);
       return;
