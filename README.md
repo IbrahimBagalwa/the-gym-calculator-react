@@ -36,7 +36,7 @@ For example, if you enter 2 + 3 instead of choosing the equal sign operator you 
 
 ### Links
 
-- Live Site URL Open [Challenge]() with your browser to see the result.
+- Live Site URL Open [Challenge](https://deploy-preview-1--heroic-druid-0c7bb2.netlify.app/) with your browser to see the result.
 
 ## My process
 
