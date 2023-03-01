@@ -1,9 +1,9 @@
-import Input from "./components/Input";
+import Calculator from "./components/Calculator";
 
 function App() {
   return (
-    <div className="bg-slate-300 h-screen">
-      <Input />
+    <div className="h-screen bg-slate-300">
+      <Calculator />
     </div>
   );
 }

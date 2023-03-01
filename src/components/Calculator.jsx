@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Input = () => {
+const Calculator = () => {
   const [num, setNum] = useState(0);
   const [oldNumber, setOldNumber] = useState(0);
   const [operator, setOperator] = useState();
@@ -201,4 +201,4 @@ const Input = () => {
   );
 };
 
-export default Input;
+export default Calculator;
