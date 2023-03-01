@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Input() {
+const Input = () => {
   const [num, setNum] = useState(0);
   const [oldNumber, setOldNumber] = useState(0);
   const [operator, setOperator] = useState();
@@ -38,16 +38,26 @@ function Input() {
     });
     setNum(0);
   };
-  const calulate = () => {
-    if (operator === "/") {
-      setNum(parseFloat(oldNumber) / parseFloat(num));
-    } else if (operator === "X") {
-      setNum(parseFloat(oldNumber) * parseFloat(num));
-    } else if (operator === "-") {
-      setNum(parseFloat(oldNumber) - parseFloat(num));
-    } else if (operator === "+") {
-      setNum(parseFloat(oldNumber) + parseFloat(num));
+  const calculate = () => {
+    switch (operator) {
+      case "/":
+        setNum(parseFloat(oldNumber) / parseFloat(num));
+        break;
+      case "X":
+        setNum(parseFloat(oldNumber) * parseFloat(num));
+        break;
+      case "-":
+        setNum(parseFloat(oldNumber) - parseFloat(num));
+        break;
+      case "+":
+        setNum(parseFloat(oldNumber) + parseFloat(num));
+        break;
+      default:
+        setNum(0);
     }
+  };
+  const changeSign = () => {
+    return num > 0 ? setNum(-num) : setNum(Math.abs(num));
   };
 
   return (
@@ -66,10 +76,7 @@ function Input() {
         >
           AC
         </button>
-        <button
-          className="border-[#7B7A89] border"
-          onClick={() => (num > 0 ? setNum(-num) : setNum(Math.abs(num)))}
-        >
+        <button className="border-[#7B7A89] border" onClick={changeSign}>
           +/-
         </button>
         <button
@@ -185,13 +192,13 @@ function Input() {
         </button>
         <button
           className="bg-[#F48637] border-[#7B7A89] border"
-          onClick={calulate}
+          onClick={calculate}
         >
           =
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default Input;
